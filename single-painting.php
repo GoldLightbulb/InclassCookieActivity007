@@ -1,8 +1,9 @@
 <?php
+
+session_start(); // Add session start to track user data
+
 include 'includes/data.inc.php';
 include 'includes/art-functions.inc.php';
-
-// TODO: start session
 
 // is there an ID passed?
 $id = 406;
@@ -50,12 +51,13 @@ foreach($paintings as $p) {
                 
                 <!-- Main Info -->
                 <div class="item">
-                    <h2 class="header"><?php echo  utf8_encode($row['Title']); ?></h2>
-                    <h3 ><?php echo utf8_encode($row['FirstName'] . ' ' . $row['LastName']); ?></h3>
+                
+                    <h2 class="header"><?php echo  mb_convert_encoding($row['Title'],UTF_Encoding, ISO_Encoding); ?></h2>
+                    <h3 ><?php echo mb_convert_encoding($row['FirstName'] . ' ' . $row['LastName'], UTF_Encoding, ISO_Encoding); ?></h3>
                       <div class="meta">
-                        <p><?php echo  utf8_encode($row['Excerpt']); ?></p>
+                        <p><?php echo  mb_convert_encoding($row['Excerpt'], UTF_Encoding, ISO_Encoding); ?></p>
                       </div>  
-                </div>                          
+                </div>
                   
                 <!-- Tabs For Details, Museum, Genre, Subjects -->
                 <?php include 'includes/painting-small-tabs.inc.php'; ?>

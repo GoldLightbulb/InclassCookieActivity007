@@ -1,5 +1,8 @@
 <?php
 
+define("UTF_Encoding", "UTF-8");
+
+define("ISO_Encoding", "ISO-8859-1");
 
 function generateReviewStars($rating) {
   $output = "";
@@ -32,13 +35,13 @@ function generateLink($url,$label) {
 function outputFilterOptions($data, $valueField, $dataField) {
   while ($single = $data->fetch()) { 
     echo '<option value=' . $single[$valueField] . '>';
-    echo utf8_encode($single[$dataField]);
+    echo  mb_convert_encoding($single[$dataField]);
     echo '</option>'; 
   }       
 }
 
 function makeArtistName($first, $last) {
-    return utf8_encode($first . ' ' . $last);
+    return  mb_convert_encoding($first . ' ' . $last, UTF_Encoding, ISO_Encoding);
 }
 
 ?>

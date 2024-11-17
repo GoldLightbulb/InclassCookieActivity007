@@ -10,7 +10,7 @@
     <tbody>
       <tr>
         <td>Artist</td>
-        <td><?php echo generateLink('single-artist.php?id=' . $row['ArtistID'], utf8_encode($row['FirstName'] . ' ' . $row['LastName'])); ?></td>                       
+        <td><?php echo generateLink('single-artist.php?id=' . $row['ArtistID'], mb_convert_encoding($row['FirstName'] . ' ' . $row['LastName'], UTF_Encoding, ISO_Encoding)); ?></td>                       
       </tr>
       <tr>                       
         <td>Year</td>

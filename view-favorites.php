@@ -1,8 +1,16 @@
 <?php
 
+define("UTF_Encoding", "UTF-8");
 
+define("ISO_Encoding", "ISO-8859-1");
 
+session_start(); // Add session start for favorites functionality
 
+$favorites = [];
+
+if (isset($_SESSION['favorites'])) {
+    $favorites = $_SESSION['favorites']; // Initialize an empty favorites list
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,20 +46,23 @@
               <th>Action</th>
           </tr></thead>
           <tbody>
-              <?php 
-                /* // markup for sample favorite is as follows:
+              <?php  foreach ($favorites as $work) { ?>
+                 // markup for sample favorite is as follows:
                      <tr>
-                        <td><img src="images/art/square-medium/092040.jpg"></td>
-                        <td><a href="single-painting.php?id=369">Adoration in the Forest</a></td>
-                        <td><a class="ui small button" href="remove-favorites.php?id=369">Remove</a></td>
+                        <td><img src="images/art/square-medium/<?php echo $work['ImageFileName']; ?>.jpg"></td>
+                        <td><a href="single-painting.php?id=<?php echo $work['PaintingID']; ?>"><?php echo  mb_convert_encoding($work['Title'], UTF_Encoding, ISO_Encoding); ?></a></td>
+                        <td><a class="ui small button" href="remove-favorites.php?id=<?php echo $work['PaintingID']; ?>">Remove</a></td>
                      </tr>
                    // loop through all favorites and output a row for each one  
-                */
+                
+              
+              <?php
+              }
               ?>
           </tbody>
           <tfoot class="full-width">
               <th colspan="3">
-                <a class="ui left floated small primary labeled icon button" href="remove-favorites.php">
+                <a class="ui left floated small primary labeled icon button" href="remove-favorites.php?id=ALL">
                   <i class="remove circle icon"></i> Remove All Favorites
                 </a>                  
               </th>
